@@ -1,175 +1,43 @@
-﻿@{
+﻿@model IEnumerable<WebApplication1.Models.Quadrinho>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <main>
     <div class="container" id="code_prod_complex">
         <div class="row">
-            <div class="col-md-4">
-                <figure class="card card-product">
-                    <div class="img-wrap"><img src="~/img/onepieceVol59.jpg"></div>
-                    <figcaption class="info-wrap">
-                        <h4 class="title">One Piece - Volume 59</h4>
-                        <p class="desc">Some small description goes here</p>
-                        <div class="rating-wrap">
-                            <ul class="rating-stars">
-                                <li style="width:80%" class="stars-active">
-                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                                </li>
-                                <li>
-                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                                </li>
-                            </ul>
-                            <div class="label-rating">132 reviews</div>
-                            <div class="label-rating">154 orders </div>
-                        </div> <!-- rating-wrap.// -->
-                    </figcaption>
-                    <div class="bottom-wrap">
-                        @Html.ActionLink("SAIBA MAIS", "Details", "Quadrinho", null, new { @class = "btn btn-sm btn-primary float-right" })
-                        <div class="price-wrap h5">
-                            <span class="price-new">R$ 32,90</span> <del class="price-old">R$ 45,90</del>
-                        </div> <!-- price-wrap.// -->
-                    </div> <!-- bottom-wrap.// -->
-                </figure>
-            </div> <!-- col // -->
-            <div class="col-md-4">
-                <figure class="card card-product">
-                    <div class="img-wrap"><img src="~/img/onepieceVol69.jpg"> </div>
-                    <figcaption class="info-wrap">
-                        <h4 class="title">One Piece - Volume 69</h4>
-                        <p class="desc">Some small description goes here</p>
-                        <div class="rating-wrap">
-                            <ul class="rating-stars">
-                                <li style="width:80%" class="stars-active">
-                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                                </li>
-                                <li>
-                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                                </li>
-                            </ul>
-                            <div class="label-rating">132 reviews</div>
-                            <div class="label-rating">154 orders </div>
-                        </div> <!-- rating-wrap.// -->
-                    </figcaption>
-                    <div class="bottom-wrap">
-                        @Html.ActionLink("SAIBA MAIS", "Details", "Quadrinho", null, new { @class = "btn btn-sm btn-primary float-right" })
-                        <div class="price-wrap h5">
-                            <span class="price-new">R$ 32,90</span> <del class="price-old">R$ 45,90</del>
-                        </div> <!-- price-wrap.// -->
-                    </div> <!-- bottom-wrap.// -->
-                </figure>
-            </div> <!-- col // -->
-            <div class="col-md-4">
-                <figure class="card card-product">
-                    <div class="img-wrap"><img src="~/img/onepieceVol78.jpg"></div>
-                    <figcaption class="info-wrap">
-                        <h4 class="title">One Piece - Volume 78</h4>
-                        <p class="desc">Some small description goes here</p>
-                        <div class="rating-wrap">
-                            <ul class="rating-stars">
-                                <li style="width:80%" class="stars-active">
-                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                                </li>
-                                <li>
-                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                                </li>
-                            </ul>
-                            <div class="label-rating">132 reviews</div>
-                            <div class="label-rating">154 orders </div>
-                        </div> <!-- rating-wrap.// -->
-                    </figcaption>
-                    <div class="bottom-wrap">
-                        @Html.ActionLink("SAIBA MAIS", "Details", "Quadrinho", null, new { @class = "btn btn-sm btn-primary float-right" })
-                        <div class="price-wrap h5">
-                            <span class="price-new">R$ 32,90</span> <del class="price-old">R$ 45,90</del>
-                        </div> <!-- price-wrap.// -->
-                    </div> <!-- bottom-wrap.// -->
-                </figure>
-            </div> <!-- col // -->
-        </div> <!-- row.// -->
-        <div class="row">
-            <div class="col-md-4">
-                <figure class="card card-product">
-                    <div class="img-wrap"><img src="~/img/onepieceVol84.jpg"></div>
-                    <figcaption class="info-wrap">
-                        <h4 class="title">One Piece - Volume 84</h4>
-                        <p class="desc">Some small description goes here</p>
-                        <div class="rating-wrap">
-                            <ul class="rating-stars">
-                                <li style="width:80%" class="stars-active">
-                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                                </li>
-                                <li>
-                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                                </li>
-                            </ul>
-                            <div class="label-rating">132 reviews</div>
-                            <div class="label-rating">154 orders </div>
-                        </div> <!-- rating-wrap.// -->
-                    </figcaption>
-                    <div class="bottom-wrap">
-                        @Html.ActionLink("SAIBA MAIS", "Details", "Quadrinho", null, new { @class = "btn btn-sm btn-primary float-right" })
-                        <div class="price-wrap h5">
-                            <span class="price-new">R$ 32,90</span> <del class="price-old">R$ 45,90</del>
-                        </div> <!-- price-wrap.// -->
-                    </div> <!-- bottom-wrap.// -->
-                </figure>
-            </div> <!-- col // -->
-            <div class="col-md-4">
-                <figure class="card card-product">
-                    <div class="img-wrap"><img src="~/img/onepieceVol89.jpg"> </div>
-                    <figcaption class="info-wrap">
-                        <h4 class="title">One Piece - Volume 89</h4>
-                        <p class="desc">Some small description goes here</p>
-                        <div class="rating-wrap">
-                            <ul class="rating-stars">
-                                <li style="width:80%" class="stars-active">
-                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                                </li>
-                                <li>
-                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                                </li>
-                            </ul>
-                            <div class="label-rating">132 reviews</div>
-                            <div class="label-rating">154 orders </div>
-                        </div> <!-- rating-wrap.// -->
-                    </figcaption>
-                    <div class="bottom-wrap">
-                        @Html.ActionLink("SAIBA MAIS", "Details", "Quadrinho", null, new { @class = "btn btn-sm btn-primary float-right" })
-                        <div class="price-wrap h5">
-                            <span class="price-new">R$ 32,90</span> <del class="price-old">R$ 45,90</del>
-                        </div> <!-- price-wrap.// -->
-                    </div> <!-- bottom-wrap.// -->
-                </figure>
-            </div> <!-- col // -->
-            <div class="col-md-4">
-                <figure class="card card-product">
-                    <div class="img-wrap"><img src="~/img/onepieceVol93.jpg"></div>
-                    <figcaption class="info-wrap">
-                        <h4 class="title">One Piece - Volume 93</h4>
-                        <p class="desc">Some small description goes here</p>
-                        <div class="rating-wrap">
-                            <ul class="rating-stars">
-                                <li style="width:80%" class="stars-active">
-                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                                </li>
-                                <li>
-                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                                </li>
-                            </ul>
-                            <div class="label-rating">132 reviews</div>
-                            <div class="label-rating">154 orders </div>
-                        </div> <!-- rating-wrap.// -->
-                    </figcaption>
-                    <div class="bottom-wrap">
-                        @Html.ActionLink("SAIBA MAIS", "Details", "Quadrinho", null, new { @class = "btn btn-sm btn-primary float-right" })
-                        <div class="price-wrap h5">
-                            <span class="price-new">R$ 32,90</span> <del class="price-old">R$ 45,90</del>
-                        </div> <!-- price-wrap.// -->
-                    </div> <!-- bottom-wrap.// -->
-                </figure>
-            </div> <!-- col // -->
-        </div> <!-- row.// -->
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <figure class="card card-product">
+                        <div class="img-wrap"><img src="~/img/onepieceVol59.jpg"></div>
+                        <figcaption class="info-wrap">
+                            <h4 class="title">@item.Titulo</h4>
+                            <p class="desc">@item.Descricao</p>
+                            <div class="rating-wrap">
+                                <ul class="rating-stars">
+                                    <li style="width:80%" class="stars-active">
+                                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                    </li>
+                                </ul>
+                                <div class="label-rating">132 reviews</div>
+                                <div class="label-rating">154 orders </div>
+                            </div> <!-- rating-wrap.// -->
+                        </figcaption>
+                        <div class="bottom-wrap">
+                            @Html.ActionLink("SAIBA MAIS", "Details", "Quadrinho", null, new { @class = "btn btn-sm btn-primary float-right" })
+                            <div class="price-wrap h5">
+                                <span class="price-new">R$ @item.Preco</span> <del class="price-old">R$ 45,90</del>
+                            </div> <!-- price-wrap.// -->
+                        </div> <!-- bottom-wrap.// -->
+                    </figure>
+                </div>
+            }
+
+        </div>
     </div>
 </main>
-

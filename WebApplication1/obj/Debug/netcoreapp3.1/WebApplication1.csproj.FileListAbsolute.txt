@@ -181,3 +181,4 @@ C:\Users\carlos\Desktop\Projeto reais\LojaDragon\WebApplication1\obj\Debug\netco
 C:\Users\carlos\Desktop\Projeto reais\LojaDragon\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\Quadrinhos\Details.cshtml.g.cs
 C:\Users\carlos\Desktop\Projeto reais\LojaDragon\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\Quadrinhos\Edit.cshtml.g.cs
 C:\Users\carlos\Desktop\Projeto reais\LojaDragon\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\Quadrinhos\Index.cshtml.g.cs
+C:\Users\carlos\Desktop\Projeto reais\LojaDragon\WebApplication1\obj\Debug\netcoreapp3.1\WebApplication1.csprojAssemblyReference.cache
