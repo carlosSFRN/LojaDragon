@@ -10,22 +10,22 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    public class QuadrinhosController : Controller
+    public class CarrinhosController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public QuadrinhosController(ApplicationDbContext context)
+        public CarrinhosController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Quadrinhos
+        // GET: Carrinhos
         public async Task<IActionResult> Index()
         {
             return View(await _context.Quadrinho.ToListAsync());
         }
 
-        // GET: Quadrinhos/Details/5
+        // GET: Carrinhos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,18 +43,18 @@ namespace WebApplication1.Controllers
             return View(quadrinho);
         }
 
-        // GET: Quadrinhos/Create
+        // GET: Carrinhos/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Quadrinhos/Create
+        // POST: Carrinhos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Titulo,Descricao,Preco,Quantidade,CaminhoCapa")] Quadrinho quadrinho)
+        public async Task<IActionResult> Create([Bind("Id,Titulo,Descricao,Preco,CaminhoCapa")] Quadrinho quadrinho)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace WebApplication1.Controllers
             return View(quadrinho);
         }
 
-        // GET: Quadrinhos/Edit/5
+        // GET: Carrinhos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,12 +81,12 @@ namespace WebApplication1.Controllers
             return View(quadrinho);
         }
 
-        // POST: Quadrinhos/Edit/5
+        // POST: Carrinhos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,Descricao,Preco,Quantidade,CaminhoCapa")] Quadrinho quadrinho)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,Descricao,Preco,CaminhoCapa")] Quadrinho quadrinho)
         {
             if (id != quadrinho.Id)
             {
@@ -116,7 +116,7 @@ namespace WebApplication1.Controllers
             return View(quadrinho);
         }
 
-        // GET: Quadrinhos/Delete/5
+        // GET: Carrinhos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +134,7 @@ namespace WebApplication1.Controllers
             return View(quadrinho);
         }
 
-        // POST: Quadrinhos/Delete/5
+        // POST: Carrinhos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
