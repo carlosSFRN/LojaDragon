@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WebApplication1.Models.Quadrinho>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<main>
+    <div class="container" id="code_prod_complex">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <figure class="card card-product">
+                        <div class="img-wrap"><img src="@item.CaminhoCapa"></div>
+                        <figcaption class="info-wrap">
+                            <h4 class="title">@item.Titulo</h4>
+                            <p class="desc">@item.Descricao</p>
+                            <p class="desc">Quantidade: @item.Quantidade</p>
+                            <div class="rating-wrap">
+                                <ul class="rating-stars">
+                                    <li style="width:80%" class="stars-active">
+                                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                    </li>
+                                </ul>
+                            </div>
+                        </figcaption>
+                        <div class="bottom-wrap">
+                            <a asp-area="" asp-controller="Carrinhos" asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-primary float-right">VEJA MAIS</a>
+                            <div class="price-wrap h5">
+                                <span class="price-new">R$ @item.Preco</span>
+                            </div>
+                        </div> 
+                    </figure>
+                </div>
+            }
+
+        </div>
+    </div>
+</main>

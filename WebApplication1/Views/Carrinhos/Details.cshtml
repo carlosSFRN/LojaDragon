@@ -1,0 +1,100 @@
+﻿@model WebApplication1.Models.Quadrinho
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<main role="main">
+
+    <section class="container" id="order" style="margin-top: 50px">
+
+        <h4 class="subtitle-doc">
+            <a href="#" data-html="code_cart" class="text-info">Itens</a>
+        </h4>
+        <div id="code_cart">
+            <div class="card">
+                <table class="table table-hover shopping-cart-wrap">
+                    <thead class="text-muted">
+                        <tr>
+                            <th scope="col">Quadrinho</th>
+                            <th scope="col" width="120">Quantidade</th>
+                            <th scope="col" width="120">Preço</th>
+                            <th scope="col" width="200" class="text-right"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <figure class="media">
+                                    <div class="img-wrap"><img src="@Html.DisplayFor(model => model.CaminhoCapa)" class="img-thumbnail img-sm"></div>
+                                    <figcaption class="media-body">
+                                        <h6 class="title text-truncate">@Html.DisplayFor(model => model.Titulo)</h6>
+                                        <dl class="dlist-inline small">
+                                            <dt>
+                                                @Html.DisplayNameFor(model => model.Descricao): </dt>
+                                            <dd>@Html.DisplayFor(model => model.Descricao)</dd>
+                                        </dl>
+                                    </figcaption>
+                                </figure>
+                            </td>
+                            <td>
+                                <input type="text" id="quantidade" name="quantidade" class="form-control" onkeyup="CalculaTotal();" onblur="CalculaTotal();" onkeypress="isnumeric();"/>
+                            </td>
+                            <td>
+                                <div class="price-wrap">
+                                    <div class="price text-info" data-value="@Html.DisplayFor(model => model.Preco)" id="preco">R$ @Html.DisplayFor(model => model.Preco)</div>
+                                </div>
+                            </td>
+                            <td class="text-right">
+                                <a href="" class="btn btn-outline-danger">X</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <br />
+    <br />
+    <section class="container col-md-12">
+        <aside class="float-right">
+            <h4 class="subtitle-doc">
+                Total a pagar
+            </h4>
+            <div id="code_desc_right">
+                <div class="box">
+                    <dl class="dlist-align">
+                        <dt>Item: </dt>
+                        <dd class="text-right">@Html.DisplayFor(model => model.Titulo)</dd>
+                    </dl>
+                    <dl class="dlist-align">
+                        <dt>Valor: </dt>
+                        <dd class="text-right h5 b" id="total"> </dd>
+                    </dl>
+                    <button class="btn-block btn-info">Finalizar Pedido</button>
+                </div> 
+            </div>
+        </aside>
+    </section>
+
+</main>
+
+<script>
+    function isnumeric() {
+        var key = event.keyCode || event.which;
+        if (key < 48 || key > 57) {
+            event.preventDefault();
+        }
+    }
+
+    function CalculaTotal() {
+
+        const quant = document.getElementById('quantidade').value;
+        const valor = document.getElementById("preco").getAttribute('data-value');
+
+        if (quant != null && valor != null) {
+            $('#total').html("R$ " + (parseInt(quant) * parseInt(valor))); 
+        }
+    }
+</script>
+
