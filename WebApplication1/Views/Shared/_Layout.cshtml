@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="/lib/bootstrap-4.2.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/lib/bootstrap-ecommerce-uikit/css/ui.css" />
     <link rel="stylesheet" href="/lib/bootstrap-ecommerce-uikit/css/responsive.css" media="only screen and (max-width: 1200px)" />
+    <link href="~/lib/Dropify/css/dropify.min.css" rel="stylesheet">
+    <link href="" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
           crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/site.css" />
@@ -32,7 +35,7 @@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-info" asp-area="" asp-controller="Quadrinhos" asp-action="Index">Vender Quadrinhos</a>
+                                <a class="nav-link text-info" asp-area="" asp-controller="Quadrinhos" asp-action="Index">Anunciar Quadrinho</a>
                             </li>
                         }
                         <li class="nav-item">
@@ -50,14 +53,51 @@
         </main>
     </div>
 
+
+
     <footer class="border-top footer text-muted text-center">
         <div class="container">
             &copy; @DateTime.Now.Year - Loja Dragon
         </div>
     </footer>
+
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery3.3.1/jquery-3.3.1.min.js"></script>
+    <script src="~/lib/Jquery-maskMoney/jquery.maskMoney.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/Dropify/js/dropify.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        $(function () {
+            $('#Preco').maskMoney();
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+
+            $('.dropify').dropify({
+                messages: {
+                    'default': 'Arraste e solte um arquivo aqui ou clique',
+                    'replace': 'Arraste e solte ou clique para substituir',
+                    'remove': 'Remove',
+                    'error': 'Ooops, aconteceu algo de errado.'
+                },
+                error: {
+                    'fileSize': 'O tamanho do arquivo é muito grande ({{ value }} max).',
+                    'minWidth': 'A largura da imagem é muito pequena ({{ value }}}px min).',
+                    'maxWidth': 'A largura da imagem é muito grande ({{ value }}}px max).',
+                    'minHeight': 'A altura da imagem é muito pequena ({{ value }}}px min).',
+                    'maxHeight': 'A altura da imagem é muito grande ({{ value }}px max).',
+                    'imageFormat': 'O formato da imagem não é permitido ({{ value }} apenas).',
+                    'fileExtension': 'O arquivo não é permitido ({{ value }} apenas).'
+                }
+            });
+        });
+    </script>
     @RenderSection("Scripts", required: false)
+
+
 </body>
 </html>

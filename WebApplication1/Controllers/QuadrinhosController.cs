@@ -7,16 +7,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Models;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using SQLitePCL;
 
 namespace WebApplication1.Controllers
 {
     public class QuadrinhosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public QuadrinhosController(ApplicationDbContext context)
+        public QuadrinhosController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            this._hostEnvironment = hostEnvironment;
         }
 
         // GET: Quadrinhos
@@ -58,6 +63,21 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                //salvar img no diretorio img
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(quadrinho.CaminhoCapa.FileName);
+                string extension = Path.GetExtension(quadrinho.CaminhoCapa.FileName);
+                string path = Path.Combine(wwwRootPath + "\\img", fileName + extension);
+
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await quadrinho.CaminhoCapa.CopyToAsync(fileStream);
+                }
+
+                quadrinho.CaminhoFisicoCapa = "\\img\\" + fileName + extension;
+                Convert.ToDecimal(quadrinho.Preco).ToString("N2");
+
                 _context.Add(quadrinho);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
