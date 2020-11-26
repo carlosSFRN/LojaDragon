@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,14 +23,18 @@ namespace WebApplication1.Models
         [StringLength(100, MinimumLength = 10)]
         public string Descricao { get; set; }
 
-        [Required(ErrorMessage = "O campo 'Preço' é obrigatório", AllowEmptyStrings = false)]
+        [Column(TypeName = "money")]
         [Display(Name = "Preço")]
         public decimal Preco { get; set; }
 
         public int Quantidade { get; set; }
 
-        [Required(ErrorMessage = "O campo 'Capa' é obrigatório", AllowEmptyStrings = false)]
+        [NotMapped]
+        [Column(TypeName = "varchar(200)")]
         [Display(Name = "Capa")]
-        public string CaminhoCapa { get; set; }
+
+        public IFormFile CaminhoCapa { get; set; }
+
+        public string CaminhoFisicoCapa { get; set; }
     }
 }

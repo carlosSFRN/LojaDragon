@@ -26,7 +26,7 @@
                         <tr>
                             <td>
                                 <figure class="media">
-                                    <div class="img-wrap"><img src="@Html.DisplayFor(model => model.CaminhoCapa)" class="img-thumbnail img-sm"></div>
+                                    <div class="img-wrap"><img src="@Html.DisplayFor(model => model.CaminhoFisicoCapa)" class="img-thumbnail img-sm"></div>
                                     <figcaption class="media-body">
                                         <h6 class="title text-truncate">@Html.DisplayFor(model => model.Titulo)</h6>
                                         <dl class="dlist-inline small">
@@ -80,6 +80,7 @@
 </main>
 
 <script>
+
     function isnumeric() {
         var key = event.keyCode || event.which;
         if (key < 48 || key > 57) {
@@ -94,6 +95,9 @@
 
         if (quant != null && valor != null) {
             $('#total').html("R$ " + (parseInt(quant) * parseInt(valor))); 
+        }
+        else if (isNaN(quant)) {
+            $('#total').html("R$ " + 0); 
         }
     }
 </script>
