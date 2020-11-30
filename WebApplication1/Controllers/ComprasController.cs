@@ -7,30 +7,25 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Models;
-using System.IO;
-using Microsoft.AspNetCore.Hosting;
-using SQLitePCL;
 
 namespace WebApplication1.Controllers
 {
-    public class QuadrinhosController : Controller
+    public class ComprasController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public QuadrinhosController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
+        public ComprasController(ApplicationDbContext context)
         {
             _context = context;
-            this._hostEnvironment = hostEnvironment;
         }
 
-        // GET: Quadrinhos
+        // GET: Compras
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Quadrinho.ToListAsync());
+            return View(await _context.Compra.ToListAsync());
         }
 
-        // GET: Quadrinhos/Details/5
+        // GET: Compras/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -38,54 +33,39 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
-            var quadrinho = await _context.Quadrinho
-                .FirstOrDefaultAsync(m => m.IdQuadrinho == id);
-            if (quadrinho == null)
+            var compra = await _context.Compra
+                .FirstOrDefaultAsync(m => m.IdCompra == id);
+            if (compra == null)
             {
                 return NotFound();
             }
 
-            return View(quadrinho);
+            return View(compra);
         }
 
-        // GET: Quadrinhos/Create
+        // GET: Compras/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Quadrinhos/Create
+        // POST: Compras/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Titulo,Descricao,Preco,Quantidade,CaminhoCapa")] Quadrinho quadrinho)
+        public async Task<IActionResult> Create([Bind("IdCompra,Titulo,Preco,Usuario")] Compra compra)
         {
             if (ModelState.IsValid)
             {
-
-                //salvar img no diretorio img
-                string wwwRootPath = _hostEnvironment.WebRootPath;
-                string fileName = Path.GetFileNameWithoutExtension(quadrinho.CaminhoCapa.FileName);
-                string extension = Path.GetExtension(quadrinho.CaminhoCapa.FileName);
-                string path = Path.Combine(wwwRootPath + "\\img", fileName + extension);
-
-                using (var fileStream = new FileStream(path, FileMode.Create))
-                {
-                    await quadrinho.CaminhoCapa.CopyToAsync(fileStream);
-                }
-
-                quadrinho.CaminhoFisicoCapa = "\\img\\" + fileName + extension;
-                Convert.ToDecimal(quadrinho.Preco).ToString("N2");
-
-                _context.Add(quadrinho);
+                _context.Add(compra);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(quadrinho);
+            return View(compra);
         }
 
-        // GET: Quadrinhos/Edit/5
+        // GET: Compras/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -93,22 +73,22 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
-            var quadrinho = await _context.Quadrinho.FindAsync(id);
-            if (quadrinho == null)
+            var compra = await _context.Compra.FindAsync(id);
+            if (compra == null)
             {
                 return NotFound();
             }
-            return View(quadrinho);
+            return View(compra);
         }
 
-        // POST: Quadrinhos/Edit/5
+        // POST: Compras/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdQuadrinho,Titulo,Descricao,Preco,Quantidade,CaminhoCapa")] Quadrinho quadrinho)
+        public async Task<IActionResult> Edit(int id, [Bind("IdCompra,Titulo,Preco,Usuario")] Compra compra)
         {
-            if (id != quadrinho.IdQuadrinho)
+            if (id != compra.IdCompra)
             {
                 return NotFound();
             }
@@ -117,12 +97,12 @@ namespace WebApplication1.Controllers
             {
                 try
                 {
-                    _context.Update(quadrinho);
+                    _context.Update(compra);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!QuadrinhoExists(quadrinho.IdQuadrinho))
+                    if (!CompraExists(compra.IdCompra))
                     {
                         return NotFound();
                     }
@@ -133,10 +113,10 @@ namespace WebApplication1.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(quadrinho);
+            return View(compra);
         }
 
-        // GET: Quadrinhos/Delete/5
+        // GET: Compras/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -144,30 +124,30 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
-            var quadrinho = await _context.Quadrinho
-                .FirstOrDefaultAsync(m => m.IdQuadrinho == id);
-            if (quadrinho == null)
+            var compra = await _context.Compra
+                .FirstOrDefaultAsync(m => m.IdCompra == id);
+            if (compra == null)
             {
                 return NotFound();
             }
 
-            return View(quadrinho);
+            return View(compra);
         }
 
-        // POST: Quadrinhos/Delete/5
+        // POST: Compras/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var quadrinho = await _context.Quadrinho.FindAsync(id);
-            _context.Quadrinho.Remove(quadrinho);
+            var compra = await _context.Compra.FindAsync(id);
+            _context.Compra.Remove(compra);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool QuadrinhoExists(int id)
+        private bool CompraExists(int id)
         {
-            return _context.Quadrinho.Any(e => e.IdQuadrinho == id);
+            return _context.Compra.Any(e => e.IdCompra == id);
         }
     }
 }
