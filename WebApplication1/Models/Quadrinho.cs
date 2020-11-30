@@ -10,8 +10,8 @@ namespace WebApplication1.Models
 {
     public class Quadrinho
     {
-
-        public int Id { get; set; }
+        [Key]
+        public int IdQuadrinho { get; set; }
 
         [Required(ErrorMessage = "O campo 'Título' é obrigatório", AllowEmptyStrings = false)]
         [Display(Name = "Título")]
@@ -36,5 +36,7 @@ namespace WebApplication1.Models
         public IFormFile CaminhoCapa { get; set; }
 
         public string CaminhoFisicoCapa { get; set; }
+
+        //public List<Compra> Compra { get; set; }
     }
 }

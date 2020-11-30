@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApplication1.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class errosidentity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,19 +47,48 @@ namespace WebApplication1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Quadrinho",
+                name: "Compra",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    IdCompra = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Titulo = table.Column<string>(nullable: true),
-                    Descricao = table.Column<string>(nullable: true),
-                    Preco = table.Column<decimal>(nullable: false),
-                    CaminhoCapa = table.Column<string>(nullable: true)
+                    Preco = table.Column<decimal>(type: "money", nullable: false),
+                    Usuario = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Quadrinho", x => x.Id);
+                    table.PrimaryKey("PK_Compra", x => x.IdCompra);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Quadrinho",
+                columns: table => new
+                {
+                    IdQuadrinho = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Titulo = table.Column<string>(maxLength: 30, nullable: false),
+                    Descricao = table.Column<string>(maxLength: 100, nullable: false),
+                    Preco = table.Column<decimal>(type: "money", nullable: false),
+                    Quantidade = table.Column<int>(nullable: false),
+                    CaminhoFisicoCapa = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Quadrinho", x => x.IdQuadrinho);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StatusCompra",
+                columns: table => new
+                {
+                    IdStatus = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Status = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StatusCompra", x => x.IdStatus);
                 });
 
             migrationBuilder.CreateTable(
@@ -226,7 +255,13 @@ namespace WebApplication1.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Compra");
+
+            migrationBuilder.DropTable(
                 name: "Quadrinho");
+
+            migrationBuilder.DropTable(
+                name: "StatusCompra");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

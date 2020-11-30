@@ -1,53 +1,109 @@
-﻿@model IEnumerable<WebApplication1.Models.Quadrinho>
+﻿@model WebApplication1.Models.Quadrinho
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Details";
 }
 
-<h1>Index</h1>
+<main role="main">
+    <form asp-action="Create" enctype="multipart/form-data">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Titulo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descricao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Preco)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CaminhoCapa)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Titulo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Preco)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CaminhoCapa)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        <section class="container" id="order" style="margin-top: 50px">
+
+            <input type="hidden" asp-for="IdQuadrinho" />
+            <input type="hidden" asp-for="Titulo" />
+            <input type="hidden" asp-for="Preco" />
+
+
+            <h4 class="subtitle-doc">
+                <a href="#" data-html="code_cart" class="text-info">Itens</a>
+            </h4>
+            <div id="code_cart">
+                <div class="card">
+                    <table class="table table-hover shopping-cart-wrap">
+                        <thead class="text-muted">
+                            <tr>
+                                <th scope="col">Quadrinho</th>
+                                <th scope="col" width="120">Quantidade</th>
+                                <th scope="col" width="120">Preço</th>
+                                <th scope="col" width="200" class="text-right"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <figure class="media">
+                                        <div class="img-wrap"><img src="@Html.DisplayFor(model => model.CaminhoFisicoCapa)" class="img-thumbnail img-sm"></div>
+                                        <figcaption class="media-body">
+                                            <h6 class="title text-truncate">@Html.DisplayFor(model => model.Titulo)</h6>
+                                            <dl class="dlist-inline small">
+                                                <dt>
+                                                    @Html.DisplayNameFor(model => model.Descricao):
+                                                </dt>
+                                                <dd>@Html.DisplayFor(model => model.Descricao)</dd>
+                                            </dl>
+                                        </figcaption>
+                                    </figure>
+                                </td>
+                                <td>
+                                    <input type="number" id="Quantidade" min="0" name="Quantidade" class="form-control" onkeyup="CalculaTotal();" onblur="CalculaTotal();" onkeypress="isnumeric();" value="0" />
+                                </td>
+                                <td>
+                                    <div class="price-wrap">
+                                        <div class="price text-info" data-value="@Html.DisplayFor(model => model.Preco)" id="Valor">R$ @Html.DisplayFor(model => model.Preco)</div>
+                                    </div>
+                                </td>
+                                <td class="text-right">
+                                    <a href="" class="btn btn-outline-danger">X</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <br />
+        <br />
+        <section class="container col-md-12">
+            <aside class="float-right">
+                <h4 class="subtitle-doc">
+                    Total a pagar
+                </h4>
+                <div id="code_desc_right">
+                    <div class="box">
+                        <dl class="dlist-align">
+                            <dt>Item: </dt>
+                            <dd class="text-right">@Html.DisplayFor(model => model.Titulo)</dd>
+                        </dl>
+                        <dl class="dlist-align">
+                            <dt>Valor: </dt>
+                            <dd class="text-right h5 b" id="Total"> </dd>
+                        </dl>
+                        <button type="submit" class="btn-block btn-info">Finalizar Pedido</button>
+                    </div>
+                </div>
+            </aside>
+        </section>
+    </form>
+
+</main>
+
+<script>
+
+    function isnumeric() {
+        var key = event.keyCode || event.which;
+        if (key < 48 || key > 57) {
+            event.preventDefault();
+        }
+    }
+
+    function CalculaTotal() {
+
+        const quant = document.getElementById('Quantidade').value;
+        const valor = document.getElementById("Valor").getAttribute('data-value');
+
+        if (quant != null && valor != null) {
+            $('#Total').html("R$ " + (parseInt(quant) * parseInt(valor)));
+            document.getElementById("Preco").value = (parseInt(quant) * parseInt(valor));
+        }
+    }
+</script>

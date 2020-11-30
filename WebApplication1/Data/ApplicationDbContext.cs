@@ -13,6 +13,11 @@ namespace WebApplication1.Data
             : base(options)
         {
         }
-        public DbSet<WebApplication1.Models.Quadrinho> Quadrinho { get; set; }
+
+        public DbSet<Quadrinho> Quadrinho { get; set; }
+
+        public DbSet<Compra> Compra { get; set; }
+
+        public DbSet<StatusCompra> StatusCompra { get; set; }
     }
 }

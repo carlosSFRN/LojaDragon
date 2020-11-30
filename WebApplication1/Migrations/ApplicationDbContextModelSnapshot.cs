@@ -219,9 +219,43 @@ namespace WebApplication1.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("WebApplication1.Models.Compra", b =>
+                {
+                    b.Property<int>("IdCompra")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("money");
+
+                    b.Property<int?>("QuadrinhoIdQuadrinho")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StatusCompraIdStatus")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Titulo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Usuario")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdCompra");
+
+                    b.HasIndex("QuadrinhoIdQuadrinho");
+
+                    b.HasIndex("StatusCompraIdStatus");
+
+                    b.ToTable("Compra");
+                });
+
             modelBuilder.Entity("WebApplication1.Models.Quadrinho", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdQuadrinho")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -245,9 +279,24 @@ namespace WebApplication1.Migrations
                         .HasColumnType("nvarchar(30)")
                         .HasMaxLength(30);
 
-                    b.HasKey("Id");
+                    b.HasKey("IdQuadrinho");
 
                     b.ToTable("Quadrinho");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.StatusCompra", b =>
+                {
+                    b.Property<int>("IdStatus")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdStatus");
+
+                    b.ToTable("StatusCompra");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -299,6 +348,17 @@ namespace WebApplication1.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Compra", b =>
+                {
+                    b.HasOne("WebApplication1.Models.Quadrinho", "Quadrinho")
+                        .WithMany()
+                        .HasForeignKey("QuadrinhoIdQuadrinho");
+
+                    b.HasOne("WebApplication1.Models.StatusCompra", "StatusCompra")
+                        .WithMany("Compra")
+                        .HasForeignKey("StatusCompraIdStatus");
                 });
 #pragma warning restore 612, 618
         }

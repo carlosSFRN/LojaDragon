@@ -2,21 +2,22 @@
 
 namespace WebApplication1.Migrations
 {
-    public partial class Five : Migration
+    public partial class adicaodequantidadeemcompras : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "CaminhoFisicoCapa",
-                table: "Quadrinho",
-                nullable: true);
+            migrationBuilder.AddColumn<int>(
+                name: "Quantidade",
+                table: "Compra",
+                nullable: false,
+                defaultValue: 0);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "CaminhoFisicoCapa",
-                table: "Quadrinho");
+                name: "Quantidade",
+                table: "Compra");
         }
     }
 }
